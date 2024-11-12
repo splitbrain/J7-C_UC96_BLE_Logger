@@ -1,5 +1,5 @@
 # J7-C_UC96_BLE_Logger
-Bluetooth Low Energy Data logging for J7-C/UC96 USB Digital Power Testers
+Bluetooth Low Energy Data logging for J7-C/UC96 USB Digital Power Testers. It should work with all the digital testers sharing the atorch protocol - see [here](https://github.com/CursedHardware/atorch-console/blob/master/README.md#supported-meter) for a list of potentially supported devices. Tested on J7-C and UD18 meters.
 
 ## Installation
 
@@ -7,7 +7,7 @@ Requires [gattlib](https://github.com/labapart/gattlib).
 
 ### Warning
 
-Sadly there has been an API change with newer bluetooth adapters (HCI5) which [isn't supported by gattlib yet](https://github.com/oscaracena/pygattlib/issues/31). If you see a `Set scan parameters failed` error, your adapter may be using >=HCI5 and not be supported until the code has been ported to dbus/bluez or gattlib is updated.
+Sadly there has been an API change with newer bluetooth adapters (HCI5) which [isn't supported by gattlib yet](https://github.com/oscaracena/pygattlib/issues/31). If you see a `Set scan parameters failed` error, your adapter may be using >=HCI5 and not be supported until the code has been ported to dbus/bluez or gattlib is updated. You can still run the script, though, you just need to bypass the scan by passing the `--device` option (or its shorthand `-d`) when running it.
 
 ## Usage
 
@@ -33,7 +33,7 @@ Device control:
                         target device MAC address. If no address is given
                         the first compatible device found will be used
   -w, --wait            wait for device to appear
-  -r, --reconnect       wait and reconnect when loosing connection
+  -r, --reconnect       wait and reconnect after losing connection
   -H HCI, --hci HCI     HCI used for communication. Defaults to hci0
   -T SCANTIME, --scantime SCANTIME
                         Time in seconds to scan for devices. Defaults to 2
