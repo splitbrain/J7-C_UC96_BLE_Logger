@@ -25,7 +25,7 @@ group_debug_me.add_argument("-q", "--quiet", help="suppress non-data output mess
 group_dev = parser.add_argument_group(title="Device control")
 group_dev.add_argument("-d", "--device", help="target device MAC address. If no address is given the first compatible device found will be used", default=False)
 group_dev.add_argument('-w', '--wait', help='wait for device to appear', action='store_true')
-group_dev.add_argument('-r', '--reconnect', help='wait and reconnect when loosing connection', action='store_true')
+group_dev.add_argument('-r', '--reconnect', help='wait and reconnect after losing connection', action='store_true')
 group_dev.add_argument("-H", "--hci", help="HCI used for communication. Defaults to hci0", default="hci0")
 group_dev.add_argument("-T", "--scantime", help="Time in seconds to scan for devices. Defaults to 2 Seconds", default=2, type=int)
 
@@ -168,7 +168,7 @@ class ReceiveNotification(object):
         self.requester = NotifyRequester(self.received, address, False)
 
     def connect(self):
-        debug(1, "Conneting to " + target)
+        debug(1, "Connecting to " + target)
         sys.stdout.flush()
 
         self.requester.connect(True)
@@ -210,7 +210,7 @@ while doWait:
                     debug(3, "Found compatible device at address " + address)
                     target = address
         except:
-            debug(0, "Device discovery failed. Is bluetooth enabled? Are you root?")
+            debug(0, "Device discovery failed. Is bluetooth enabled? Are you root? Try running the script with the --device option to bypass the scan - see https://github.com/adlerweb/J7-C_UC96_BLE_Logger/blob/main/README.md#warning")
 
     if args.wait:
         doWait = True
